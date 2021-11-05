@@ -1,0 +1,59 @@
+public class Solution {
+    public int[] plusOne(int[] A) {
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        for(int i=0; i<A.length; i++)
+        {
+            list.add(A[i]);
+        }
+        
+        int carry = 1;
+        for(int i=list.size()-1; i>=0; i--)
+        { 
+            
+            if((list.get(i)+carry)!=10)
+            {
+                list.set(i,list.get(i)+carry);
+                carry=0;
+            }
+            else if((list.get(i)+carry)==10)
+            {
+                list.set(i, 0);
+                
+            }
+        }
+        
+        
+        if(carry==1)
+        {
+            int B[] = new int[list.size()+1];
+            for(int i=list.size()-1; i>=0; i--)
+            {
+              B[i+1]=list.get(i);
+            }
+            B[0]=1;
+            return B;
+        }
+        
+        int count=0;
+        
+        for(int i=0; i<list.size()-1; i++)
+        {
+            if(list.get(i)==0)
+            {
+                count++;
+            }
+            else
+            break;
+        }
+        
+        int B[] = new int[list.size()-count];
+        for(int i=list.size()-1; i>=count; i--)
+        {
+            B[i-count]=list.get(i);
+        }
+        
+        return B;
+    }
+}
